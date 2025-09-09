@@ -4,12 +4,12 @@
     background-color: #DED3C4;
 }
 
-.dark-mode-moon-icon{
+.home-icon{
     color: #555879;
     cursor: pointer;
 }
 
-.dark-mode-moon-icon:hover{
+.home-icon:hover{
     color:#98A1BC;
     transition: 0.5s;
 }
@@ -43,10 +43,10 @@ p{
     padding-top: 2.5%;
 }
 
-.dark-mode-moon-icon{
+.home-icon{
     position: fixed;
     top: 25px;
-    right: 50px;
+    left: 50px;
     font-size: 30px;
 }
 
@@ -172,3 +172,46 @@ p{
 .copy-button:hover {
     color: #555879; /* A darker blue on hover */
 }
+
+/* for the prev and next buttons in the quiz */
+.quiz-media-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px; /* Space between buttons and media */
+    margin-bottom: 20px;
+  }
+  
+  .media-wrapper {
+    flex-grow: 1;
+    max-width: 80%;
+  }
+  
+  #quiz-media {
+    width: 100%;
+    height: auto;
+    max-height: 500px; /* Default max height for media */
+    object-fit: contain;
+    border-radius: 8px;
+  }
+  
+  .nav-button {
+    background-color: #555879;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 24px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .nav-button:hover {
+    background-color: #98A1BC;
+  }
+  
+  .nav-button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+  }

@@ -65,26 +65,42 @@ function displayQuestion() {
         document.getElementById('quiz-content').innerHTML = `<h2>Quiz Complete!</h2><p>You've learned the basics of spotting deepfakes.</p>`;
         document.getElementById('quiz-feedback').innerHTML = '';
         return;
-    }
+      }
+      
+      const currentQuestion = quizData[currentQuestionIndex];
+      let mediaHtml = '';
+      
+      // Get the custom class for the image, or use an empty string if it's not defined
+      const customClass = currentQuestion.customClass || '';
     
-    let currentQuestion = quizData[currentQuestionIndex];
-    let mediaHtml = '';
+      if (currentQuestion.mediaUrl.includes('youtube.com') || currentQuestion.mediaUrl.includes('youtu.be')) {
+        mediaHtml = `<iframe id="quiz-media" src="${currentQuestion.mediaUrl}" frameborder="0" allowfullscreen></iframe>`;
+      } else {
+        // Add the customClass to the img tag
+        mediaHtml = `<img id="quiz-media" src="${currentQuestion.mediaUrl}" alt="Quiz media" class="${customClass}">`;
+      }
     
-    if (currentQuestion.mediaUrl.includes('youtube.com') || currentQuestion.mediaUrl.includes('youtu.be')) {
-        mediaHtml = `<iframe id="quiz-media" src="${currentQuestion.mediaUrl}" frameborder="0" allowfullscreen class="w-100"></iframe>`;
-    } else {
-        mediaHtml = `<img id="quiz-media" src="${currentQuestion.mediaUrl}" alt="A photo for the deepfake quiz" class="img-fluid mb-3">`;
-    }
-
-    document.getElementById('quiz-feedback').innerHTML = '';
-    document.getElementById('quiz-content').innerHTML = `
+      // Disable buttons if at the start or end of the quiz
+      const isFirstQuestion = currentQuestionIndex === 0;
+      const isLastQuestion = currentQuestionIndex === quizData.length - 1;
+    
+      document.getElementById('quiz-feedback').innerHTML = '';
+      document.getElementById('quiz-content').innerHTML = `
         <p class="fs-5">${currentQuestion.question}</p>
-        ${mediaHtml}
-        <div>
-            <button class="btn btn-primary mx-2" onclick="checkAnswer('real')">Real</button>
-            <button class="btn btn-danger mx-2" onclick="checkAnswer('fake')">Fake</button>
+        
+        <div class="quiz-media-container">
+          <button class="nav-button" onclick="previousQuestion()" ${isFirstQuestion ? 'disabled' : ''}>&#8249;</button>
+          <div class="media-wrapper">
+            ${mediaHtml}
+          </div>
+          <button class="nav-button" onclick="nextQuestion()" ${isLastQuestion ? 'disabled' : ''}>&#8250;</button>
         </div>
-    `;
+    
+        <div class="answer-buttons">
+          <button class="btn btn-primary mx-2" onclick="checkAnswer('real')">Real</button>
+          <button class="btn btn-danger mx-2" onclick="checkAnswer('fake')">Fake</button>
+        </div>
+      `;
 }
 
 function checkAnswer(userAnswer) {
@@ -96,10 +112,6 @@ function checkAnswer(userAnswer) {
     } else {
         feedback.innerHTML = `<p class="text-danger">Incorrect. ${quizData[currentQuestionIndex].explanation}</p>`;
     }
-    
-    // Move to the next question after a short delay
-    currentQuestionIndex++;
-    setTimeout(displayQuestion, 4000); // Wait 4 seconds before next question
 }
 
 // Start the quiz when the page loads (or when the module is shown)
@@ -401,3 +413,20 @@ document.getElementById('alibi-button').addEventListener('click', () => {
         alert('Please select a file first.');
     }
 });
+
+// for the navigation of the quiz questions
+function nextQuestion() {
+  // Go to the next question if we're not at the end of the quiz
+  if (currentQuestionIndex < quizData.length - 1) {
+    currentQuestionIndex++;
+    displayQuestion();
+  }
+}
+
+function previousQuestion() {
+  // Go to the previous question if we're not at the beginning
+  if (currentQuestionIndex > 0) {
+    currentQuestionIndex--;
+    displayQuestion();
+  }
+}
