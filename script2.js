@@ -20,22 +20,46 @@ function showModule(moduleId) {
 
 const quizData = [
   {
-    videoUrl: "https://www.youtube.com/embed/cQ54GDm1eL0", // Example: Obama Deepfake
+    mediaUrl: "images/trump_fake.png", // Example: Fake Image
+    question: "Is this photo of Donald Trump real or a deepfake?",
+    answer: "fake",
+    explanation: "This is fake! Notice how blurry the faces in the foreground of the second image are, and the inconsistencies of facial features on the people displayed."
+  },
+  {
+    mediaUrl: "images/pentagon_fake.png", // Example: Fake Image
+    question: "Is this photo real or a deepfake?",
+    answer: "fake",
+    explanation: "This is fake! Notice the inconsistencies in the building frontage, and the blurry nature of the fence."
+  },
+  {
+    mediaUrl: "images/real_image.png", // Example: Real Image
+    question: "Is this photo real or a deepfake?",
+    answer: "real",
+    explanation: "This is a real image! Notice how all shapes are precise and proportional, and the foreground is not blurred."
+  },
+  {
+    mediaUrl: "https://www.youtube.com/embed/cQ54GDm1eL0", // Example: Obama Deepfake
     question: "Is this video of Barack Obama real or a deepfake?",
     answer: "fake",
-    explanation: "This is a deepfake! Notice the slightly unnatural mouth movements that don't perfectly sync."
+    explanation: "This is a deepfake! Notice the inconsistencies of the mouth movements and the lack of facial feature movement."
   },
   {
-    videoUrl: "https://www.youtube.com/embed/t5-bDb_gH54", // Example: Real interview
-    question: "Is this interview with Keanu Reeves real or a deepfake?",
+    mediaUrl: "https://www.youtube.com/embed/t17O2AKa2FU", // Example: Real interview
+    question: "Is this interview with Scott Morrison real or a deepfake?",
     answer: "real",
-    explanation: "This is a real video. The lighting, expressions, and audio are all consistent and natural."
+    explanation: "This is a real video! Notice how movement and facial features look natural, and there is no foreground blurring."
   },
   {
-    videoUrl: "https://www.youtube.com/embed/G40I6b5t4sM", // Example: Tom Cruise Deepfake
-    question: "Is this video of Tom Cruise real or a deepfake?",
+    mediaUrl: "https://www.youtube.com/embed/oxXpB9pSETo", // Example: Morgan Freeman edited
+    question: "Is this video of Morgan Freeman real or a deepfake?",
     answer: "fake",
-    explanation: "This is a very convincing deepfake! The technology is getting dangerously good."
+    explanation: "This is fake! Notice how uncanny the deepfake Freeman looks, and the inconsistencies of the hair."
+  },
+  {
+    mediaUrl: "https://www.youtube.com/embed/Ml2BWvQ0nGg", // Example: Joe Biden edited
+    question: "Is this video of Joe Biden real or a deepfake?",
+    answer: "fake",
+    explanation: "This is a very convincing deepfake!"
   }
 ];
 
@@ -49,11 +73,18 @@ function displayQuestion() {
   }
   
   let currentQuestion = quizData[currentQuestionIndex];
+  let mediaHtml = '';
   
+  if (currentQuestion.mediaUrl.includes('youtube.com') || currentQuestion.mediaUrl.includes('youtu.be')) {
+    mediaHtml = `<iframe id="quiz-media" src="${currentQuestion.mediaUrl}" frameborder="0" allowfullscreen class="w-100"></iframe>`;
+  } else {
+    mediaHtml = `<img id="quiz-media" src="${currentQuestion.mediaUrl}" alt="A photo for the deepfake quiz" class="img-fluid mb-3">`;
+  }
+
   document.getElementById('quiz-feedback').innerHTML = '';
   document.getElementById('quiz-content').innerHTML = `
     <p class="fs-5">${currentQuestion.question}</p>
-    <iframe id="quiz-video" src="${currentQuestion.videoUrl}" frameborder="0" allowfullscreen></iframe>
+    ${mediaHtml}
     <div>
       <button class="btn btn-primary mx-2" onclick="checkAnswer('real')">Real</button>
       <button class="btn btn-danger mx-2" onclick="checkAnswer('fake')">Fake</button>
