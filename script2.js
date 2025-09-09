@@ -176,7 +176,38 @@ function saveAlibi(timestamp, lat, lon, hash) {
   localStorage.setItem('alibiLog', JSON.stringify(alibis));
 }
 
-function loadAlibiLog() {
+/**
+ * Re-calculates the hash of an alibi's data to verify its integrity.
+ * @param {object} alibi - The alibi object with timestamp, lat, lon, and original hash.
+ * @returns {Promise<object>} - A promise that resolves to an object { isVerified: boolean, reason: string }.
+ */
+async function verifyAlibi(alibi) {
+  try {
+    // 1. Recreate the exact original data string
+    const dataToHash = `Timestamp: ${alibi.timestamp}, Location: ${alibi.lat}, ${alibi.lon}`;
+
+    // 2. Re-hash it using the same SHA-256 algorithm
+    const encoder = new TextEncoder();
+    const data = encoder.encode(dataToHash);
+    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+    const currentHash = bufferToHex(hashBuffer); // Assumes you have the bufferToHex function
+
+    // 3. Compare the new hash with the one stored in the log
+    if (currentHash === alibi.hash) {
+      return { isVerified: true, reason: 'Data is authentic' };
+    } else {
+      return { isVerified: false, reason: 'Data mismatch. Hash does not verify.' };
+    }
+  } catch (error) {
+    console.error('Error verifying hash:', error);
+    return { isVerified: false, reason: 'Verification failed' };
+  }
+}
+
+
+// --- Replace your OLD loadAlibiLog function with this NEW one ---
+
+async function loadAlibiLog() {
   const alibis = JSON.parse(localStorage.getItem('alibiLog')) || [];
   const logElement = document.getElementById('alibi-log');
   
@@ -187,14 +218,41 @@ function loadAlibiLog() {
     return;
   }
   
-  alibis.forEach(alibi => {
+  // NOTE: You would get this from a user profile. For now, we'll use a placeholder.
+  const userPhotoUrl = "https://via.placeholder.com/150"; // A generic placeholder image
+
+  // Use a for...of loop to handle the async verification for each item
+  for (const alibi of alibis) {
+    // 1. Verify the integrity of each alibi entry
+    const verification = await verifyAlibi(alibi);
+    
+    // 2. Set up the icon and class based on verification status
+    const icon = verification.isVerified ? '✅' : '❌';
+    const statusClass = verification.isVerified ? 'verified' : 'unverified';
+
+    // 3. Create the new list item element
     const listItem = document.createElement('li');
-    listItem.classList.add('list-group-item');
+    listItem.classList.add('list-group-item', 'p-0'); // Bootstrap classes for clean slate
+    
+    // 4. Populate the list item with the new, more complex HTML structure
     listItem.innerHTML = `
-      <strong>Date:</strong> ${new Date(alibi.timestamp).toLocaleString()} <br>
-      <strong>Location:</strong> ${alibi.lat.toFixed(4)}, ${alibi.lon.toFixed(4)} <br>
-      <small class="text-muted"><strong>Proof Hash:</strong> ${alibi.hash.substring(0, 32)}...</small>
+      <div class="alibi-entry">
+        <img src="${userPhotoUrl}" alt="User Photo" class="alibi-photo">
+        
+        <div class="alibi-details">
+          <p><strong>Date:</strong> ${new Date(alibi.timestamp).toLocaleString()}</p>
+          <p><strong>Location:</strong> ${alibi.lat.toFixed(4)}, ${alibi.lon.toFixed(4)}</p>
+          <p class="proof-hash"><strong>Proof:</strong> ${alibi.hash.substring(0, 32)}...</p>
+        </div>
+        
+        <div class="alibi-status">
+          <div class="status-icon ${statusClass}">${icon}</div>
+          <div class="reason-text">${verification.reason}</div>
+        </div>
+      </div>
     `;
+    
+    // 5. Append the new card to the log
     logElement.appendChild(listItem);
-  });
+  }
 }

@@ -86,3 +86,62 @@ p{
     transition: 0.5s;
 }
 
+/* Style for each alibi entry card */
+.alibi-entry {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  background-color: #f9f9f9;
+}
+
+/* User photo on the left */
+.alibi-photo {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%; /* Makes the image a circle */
+  object-fit: cover; /* Prevents the image from stretching */
+  margin-right: 15px;
+}
+
+/* The main content area with date/location/hash */
+.alibi-details {
+  flex-grow: 1; /* This makes it take up the available space */
+}
+
+.alibi-details p {
+  margin: 0;
+  line-height: 1.4;
+}
+
+.proof-hash {
+  font-family: monospace;
+  font-size: 0.8rem;
+  color: #6c757d; /* A muted gray color */
+}
+
+/* The verification status on the right */
+.alibi-status {
+  text-align: center;
+  margin-left: 15px;
+}
+
+.status-icon {
+  font-size: 2rem; /* Makes the tick/cross bigger */
+}
+
+.status-icon.verified {
+  color: #198754; /* Green for success */
+}
+
+.status-icon.unverified {
+  color: #dc3545; /* Red for failure */
+}
+
+.reason-text {
+  font-size: 0.75rem;
+  color: #6c757d;
+  margin-top: 5px;
+}
