@@ -63,10 +63,10 @@ p{
 
 .buttons-section{
     margin: auto;
+    
     width: 78%;
     text-align: center;
     padding-top: 50px;
-
     display: flex;
     justify-content: center;
     gap: 30px;
@@ -85,6 +85,12 @@ p{
     background-color:#98A1BC;
     transition: 0.5s;
 }
+
+.buttons:hover{
+    background-color:#98A1BC;
+    transition: 0.5s;
+}
+
 
 /* Style for each alibi entry card */
 .alibi-entry {
