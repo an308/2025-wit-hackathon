@@ -1,0 +1,10 @@
+/* Extra custom styles */
+.dark-mode {
+  background-color: #222 !important;
+  color: #eee !important;
+}
+
+.dark-mode .card {
+  background-color: #333;
+  color: #eee;
+}
