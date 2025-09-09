@@ -5,19 +5,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Verity Guardian</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style2.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
 </head>
 <body class="bg-light">
 
-  <div class="container my-5">
-    <div class="text-center mb-5">
-      <h1>🛡️ Verity Guardian</h1>
-      <p class="lead">Empowering you against deepfakes through education and protection.</p>
+  <div class="main-container">
+    <div class="header-section">
+      <!-- <h1>🛡️ Verity Guardian</h1> -->
+      <a class="dark-mode-moon-icon" href="#" target="blank"><i class="fas fa-moon"></i></a>
+    </div>
+    <h1>🛡️ Verity Guardian</h1>
+    <div class="introduction-section">
+      <!-- <p class="lead">Empowering you against deepfakes through education and protection.</p> -->
+      <h2> Our Vision and Goal</h2>
+      <!-- <p>Learn to differentiate the realistic Deepfake images through our Deepfake identifying quiz and then test our Alibi key generator which will allow you to justify and prove/disprove your involvement in particular scenarios.</p> -->
+      <p>In today's digital world, the line between reality and artificial creation is becoming increasingly blurred, making the skill of critical discernment more essential than ever. We've designed our platform to offer a two-pronged approach: first education, then protection.</p>
+      <h3>Learn to Spot Fakes</h3>
+      <p>This is your training ground. We invite you to sharpen your instincts through our curated, interactive quiz designed to reveal the subtle imperfections of even the most sophisticated deepfakes. By engaging with real-world examples in a hands-on environment, you will develop the confidence and the critical eye needed to navigate the complexities of the modern media landscape and identify digital deception.
+      </p>
+      
     </div>
 
-    <div id="menu" class="text-center">
-        <button class="btn btn-primary btn-lg mx-2" onclick="showModule('learnModule')">Learn to Spot Fakes</button>
-        <button class="btn btn-success btn-lg mx-2" onclick="showModule('protectModule')">Protect Your Truth</button>
+    <div id="menu" class="buttons-section">
+      <button class="buttons" id="identifying-fakes-button">Identifying Fakes</button>
+      <button class="buttons" id="alibi-generator-button">Alibi Generator</button>
+        <!-- <button class="btn btn-primary btn-lg mx-2" onclick="showModule('learnModule')">Identifying Fakes</button>
+        <button class="btn btn-success btn-lg mx-2" onclick="showModule('protectModule')">Alibi Generator</button> -->
     </div>
 
     <div id="learnModule" class="module-container" style="display: none;">
@@ -48,6 +62,6 @@
 
   </div>
 
-  <script src="script.js"></script>
+  <script src="script2.js"></script>
 </body>
 </html>
