@@ -16,7 +16,7 @@ function showModule(moduleId) {
 const quizData = [
     {
         mediaUrl: "images/trump_fake.png",
-        question: "Is this photo of Donald Trump real or a deepfake?",
+        question: "Is this photo real or a deepfake?",
         answer: "fake",
         explanation: "This is fake! Notice how blurry the faces in the foreground of the second image are, and the inconsistencies of facial features on the people displayed."
     },
@@ -97,8 +97,8 @@ function displayQuestion() {
         </div>
     
         <div class="answer-buttons">
-          <button class="btn btn-primary mx-2" onclick="checkAnswer('real')">Real</button>
-          <button class="btn btn-danger mx-2" onclick="checkAnswer('fake')">Fake</button>
+          <button class="btn btn-real mx-2" onclick="checkAnswer('real')">Real</button>
+          <button class="btn btn-fake mx-2" onclick="checkAnswer('fake')">Fake</button>
         </div>
       `;
 }

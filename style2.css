@@ -46,7 +46,7 @@ p{
 .home-icon{
     position: fixed;
     top: 25px;
-    left: 50px;
+    left: 40px;
     font-size: 30px;
 }
 
@@ -113,7 +113,7 @@ p{
   /* margin-right: 15px; */
 }
 
-/* The main content area with date/location/hash */
+/* The main content aa with date/location/hash */
 .alibi-details {
   margin-left: 15px; /* This makes it take up the available space */
 }
@@ -215,3 +215,27 @@ p{
     background-color: #cccccc;
     cursor: not-allowed;
   }
+
+/* Custom button style for the 'Real' button */
+.btn-real {
+background-color: #67AE6E; /* A sea green color */
+border-color: black;
+color: black;
+}
+
+.btn-real:hover {
+background-color: #90C67C; /* A lighter green on hover */
+border-color: black;
+}
+
+/* Custom button style for the 'Fake' button */
+.btn-fake {
+background-color: #CD5656; /* A steel blue color */
+border-color: black;
+color: black;
+}
+
+.btn-fake:hover {
+background-color: #DA6C6C; /* A cadet blue on hover */
+border-color: black;
+}
