@@ -92,16 +92,31 @@ p{
 }
 
 
+/* Main log container */
+#alibi-log {
+  background-color: rgba(244, 235, 211, 0.5); /* matches the introduction-section */
+  width: 100%; /* Will take up full width of its parent */
+  margin: 20px auto; /* Adds space above/below the log */
+  border-radius: 15px;
+  padding: 20px;
+  list-style: none; /* Removes the default bullet points */
+}
+
 /* Style for each alibi entry card */
 .alibi-entry {
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
   padding: 15px;
   border: 1px solid #ddd;
   border-radius: 8px;
   margin-bottom: 10px;
-  background-color: #f9f9f9;
+  background-color: #f9f9f9; /* Keep the cards white */
+}
+
+/* The last entry shouldn't have a bottom margin to prevent extra space */
+.alibi-entry:last-child {
+  margin-bottom: 0;
 }
 
 /* User photo on the left */

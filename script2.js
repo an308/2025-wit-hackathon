@@ -1,5 +1,4 @@
-// --- General Module Navigation (Top of file) ---
-// This function needs to be at the top so it can be called from HTML
+// --- General Module Navigation ---
 function showModule(moduleId) {
     document.getElementById('menu').style.display = 'none';
     document.getElementById('learnModule').style.display = 'none';
@@ -12,7 +11,7 @@ function showModule(moduleId) {
     }
 }
 
-// --- MODULE 1: Learn to Spot Fakes (The Quiz) ---
+// --- MODULE 1: Deefake Detectives ---
 const quizData = [
     {
         mediaUrl: "images/trump_fake.png",
@@ -117,7 +116,7 @@ function checkAnswer(userAnswer) {
 // Start the quiz when the page loads (or when the module is shown)
 displayQuestion();
 
-// --- MODULE 2: AI Alibi Generator ---
+// --- MODULE 2: Alibi Generator ---
 
 // Helper function to convert the hash buffer to a hex string
 function bufferToHex(buffer) {
@@ -205,7 +204,7 @@ async function verifyAlibi(alibi) {
 
     const isVerified = (rehashedProofHash === alibi.proofHash);
 
-    let reason = isVerified ? "Valid" : "Data Tampered";
+    let reason = isVerified ? "Image is Valid" : "Data Tampered";
 
     return {
         isVerified: isVerified,
@@ -352,7 +351,7 @@ async function createAlibi(imageFile) {
             let proofHashHex;
             
             if (!metadata || Object.keys(metadata).length === 0) {
-                alert("No metadata found. This file cannot be authenticated and will be logged as an unverified alibi.");
+                alert("No metadata found. This file cannot be authenticated and will be logged as unverified.");
                 proofHashHex = null;
             } else {
                 const metadataString = JSON.stringify(metadata);
