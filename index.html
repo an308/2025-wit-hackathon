@@ -2,36 +2,52 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Hackathon Project</title>
-  <!-- Bootstrap CSS (from CDN, no install needed) -->
+  <title>VeriLens Prototype</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body class="bg-light text-dark">
 
-  <div class="container py-5">
-    <h1 class="text-center mb-4">🚀 Our Hackathon Project</h1>
-    <p class="text-center">Welcome! This is our prototype demo page.</p>
-
-    <!-- Input + Output -->
-    <div class="card p-3 mb-4">
-      <h2>User Input</h2>
-      <div class="input-group mb-2">
-        <input id="userInput" type="text" class="form-control" placeholder="Type something...">
-        <button class="btn btn-primary" onclick="showMessage()">Submit</button>
+  <div class="container-fluid vh-100">
+    <div class="row h-100">
+      
+      <div class="col-md-6 d-flex flex-column justify-content-center align-items-center border-end p-4">
+        <div class="text-center w-100">
+          <h1 class="mb-4">🔬 Metadata Analyzer</h1>
+          <p>Paste an image URL to check its EXIF data.</p>
+          <div class="input-group mb-2">
+            <input id="imageUrlInput" type="text" class="form-control" placeholder="Enter image URL here...">
+            <button class="btn btn-primary" onclick="analyzeImage()">Analyze</button>
+          </div>
+          <div id="loading" class="text-center mt-3" style="display: none;">
+            <div class="spinner-border" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+          </div>
+          <p id="output" class="fw-bold mt-3"></p>
+        </div>
       </div>
-      <p id="output" class="fw-bold"></p>
-    </div>
 
-    
+      <div class="col-md-6 d-flex flex-column justify-content-center align-items-center p-4">
+        <div class="text-center w-100">
+          <h1 class="mb-4">🌐 Source Credibility Check</h1>
+          <p>Paste a website URL to check its reputation.</p>
+          <div class="input-group mb-2">
+            <input id="websiteUrlInput" type="text" class="form-control" placeholder="Enter website URL here...">
+            <button class="btn btn-success" onclick="alert('Function not yet created!')">Check Source</button>
+          </div>
+           <p id="sourceOutput" class="fw-bold mt-3"></p>
+        </div>
+      </div>
 
-    <!-- Dark Mode -->
-    <div class="card p-3 mb-4 text-center">
-      <h2>Dark Mode</h2>
-      <button class="btn btn-dark" onclick="toggleDarkMode()">Toggle Dark Mode</button>
     </div>
   </div>
 
+  <div style="position: absolute; top: 10px; right: 10px;">
+    <button class="btn btn-dark" onclick="toggleDarkMode()">Toggle Dark Mode</button>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/exif-js"></script>
   <script src="script.js"></script>
 </body>
 </html>

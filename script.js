@@ -1,66 +1,60 @@
-// --- Input + Output ---
-function showMessage() {
-  let input = document.getElementById("userInput").value;
-  let output = document.getElementById("output");
-  
-  if (input.trim() === "") {
-    output.textContent = "⚠️ Please type something!";
-  } else {
-    output.textContent = "✅ You entered: " + input;
+// This is the main function called by the "Analyze" button
+function analyzeImage() {
+  // Get the URL the user pasted into the input box
+  const imageUrl = document.getElementById('imageUrlInput').value;
+  const output = document.getElementById('output');
+  const loading = document.getElementById('loading');
+
+  // Basic check to see if the user entered anything
+  if (imageUrl.trim() === "") {
+    output.textContent = "⚠️ Please enter an image URL!";
+    return;
   }
-}
 
-// --- Click Counter ---
-let count = 0;
-function increment() {
-  count++;
-  document.getElementById("count").textContent = count;
-}
+  // Show the loading spinner and clear previous results
+  loading.style.display = 'block';
+  output.textContent = '';
 
-// --- To-Do List ---
-function addTask() {
-  let input = document.getElementById("todoInput");
-  let taskText = input.value.trim();
-  if (taskText === "") return;
+  // Create a new image element in memory (it won't be visible on the page)
+  const image = new Image()
+  
+  // This is CRITICAL for fetching images from other websites (CORS policy)
+  image.crossOrigin = "Anonymous";
 
-  let li = document.createElement("li");
-  li.textContent = taskText;
-  li.classList.add("list-group-item");
+  // This function will run AFTER the image has successfully loaded
+  image.onload = function() {
+    // Use the EXIF.js library to read the data from the image
+    EXIF.getData(image, function() {
+      // Hide the loading spinner
+      loading.style.display = 'none';
 
-  // Remove task on click
-  li.onclick = function() {
-    this.remove();
+      // Get all the metadata tags found by the library
+      const allTags = EXIF.getAllTags(this);
+      
+      // Check if the 'allTags' object is empty or not
+      if (Object.keys(allTags).length === 0) {
+        // If it's empty, no metadata was found
+        output.textContent = "Result: 🟡 Metadata Stripped / Not Found.";
+      } else {
+        // If it has data, metadata is intact!
+        output.textContent = "Result: ✅ Metadata Intact.";
+        console.log('Found EXIF data:', allTags); // Optional: view data in browser console
+      }
+    });
   };
 
-  document.getElementById("todoList").appendChild(li);
-  input.value = "";
+  // This function will run if the image fails to load (e.g., bad URL)
+  image.onerror = function() {
+    loading.style.display = 'none';
+    output.textContent = "❌ Error: Could not load the image. Check the URL.";
+  };
+
+  // Set the source of the image element to the user's URL, which starts the loading process
+  image.src = imageUrl;
 }
 
-// --- Calculator ---
-function calculate(op) {
-  let n1 = parseFloat(document.getElementById("num1").value);
-  let n2 = parseFloat(document.getElementById("num2").value);
-  let result;
 
-  if (isNaN(n1) || isNaN(n2)) {
-    result = "⚠️ Enter numbers first!";
-  } else {
-    if (op === '+') result = n1 + n2;
-    if (op === '-') result = n1 - n2;
-    if (op === '*') result = n1 * n2;
-    if (op === '/') result = n2 !== 0 ? n1 / n2 : "❌ Divide by 0!";
-  }
-
-  document.getElementById("calcResult").textContent = "Result: " + result;
-}
-
-// --- Random Number Generator ---
-function generateRandom() {
-  let num = Math.floor(Math.random() * 100) + 1; // 1–100
-  document.getElementById("randomOutput").textContent = "🎲 " + num;
-}
-
-// --- Dark Mode ---
+// --- Dark Mode Function (from your template) ---
 function toggleDarkMode() {
   document.body.classList.toggle("dark-mode");
 }

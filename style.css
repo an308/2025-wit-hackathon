@@ -1,10 +1,18 @@
-/* Extra custom styles */
-.dark-mode {
-  background-color: #222 !important;
-  color: #eee !important;
+body {
+  transition: background-color 0.3s, color 0.3s;
 }
 
-.dark-mode .card {
-  background-color: #333;
-  color: #eee;
+body.dark-mode {
+  background-color: #121212;
+  color: #ffffff;
+}
+
+body.dark-mode .form-control {
+  background-color: #2b2b2b;
+  color: #ffffff;
+  border-color: #444;
+}
+
+body.dark-mode .border-end {
+  border-color: #444 !important;
 }
