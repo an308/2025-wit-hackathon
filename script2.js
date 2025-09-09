@@ -17,19 +17,22 @@ const quizData = [
         mediaUrl: "images/trump_fake.png",
         question: "Is this photo real or a deepfake?",
         answer: "fake",
-        explanation: "This is fake! Notice how blurry the faces in the foreground of the second image are, and the inconsistencies of facial features on the people displayed."
+        explanation: "This is fake! Notice how blurry the faces in the foreground of the second image are, and the inconsistencies of facial features on the people displayed.",
+        customClass: "image-1"
     },
     {
         mediaUrl: "images/pentagon_fake.png",
         question: "Is this photo real or a deepfake?",
         answer: "fake",
-        explanation: "This is fake! Notice the inconsistencies in the building frontage, and the blurry nature of the fence."
+        explanation: "This is fake! Notice the inconsistencies in the building frontage, and the blurry nature of the fence.",
+        customClass: "image-2"
     },
     {
         mediaUrl: "images/real_image.png",
         question: "Is this photo real or a deepfake?",
         answer: "real",
-        explanation: "This is a real image! Notice how all shapes are precise and proportional, and the foreground is not blurred."
+        explanation: "This is a real image! Notice how all shapes are precise and proportional, and the foreground is not blurred.",
+        customClass: "image-3"
     },
     {
         mediaUrl: "https://www.youtube.com/embed/cQ54GDm1eL0",
@@ -64,20 +67,25 @@ function displayQuestion() {
         document.getElementById('quiz-content').innerHTML = `<h2>Quiz Complete!</h2><p>You've learned the basics of spotting deepfakes.</p>`;
         document.getElementById('quiz-feedback').innerHTML = '';
         return;
-      }
+    }
       
-      const currentQuestion = quizData[currentQuestionIndex];
-      let mediaHtml = '';
-      
-      // Get the custom class for the image, or use an empty string if it's not defined
-      const customClass = currentQuestion.customClass || '';
-    
-      if (currentQuestion.mediaUrl.includes('youtube.com') || currentQuestion.mediaUrl.includes('youtu.be')) {
-        mediaHtml = `<iframe id="quiz-media" src="${currentQuestion.mediaUrl}" frameborder="0" allowfullscreen></iframe>`;
-      } else {
-        // Add the customClass to the img tag
-        mediaHtml = `<img id="quiz-media" src="${currentQuestion.mediaUrl}" alt="Quiz media" class="${customClass}">`;
-      }
+    let currentQuestion = quizData[currentQuestionIndex];
+    let mediaHtml = '';
+
+    // Get the custom class for the image, or use an empty string if it's not defined
+    const customClass = currentQuestion.customClass || '';
+
+    if (currentQuestion.mediaUrl.includes('youtube.com') || currentQuestion.mediaUrl.includes('youtu.be')) {
+    // VIDEOS get wrapped in the video-container
+    mediaHtml = `
+        <div class="video-container">
+        <iframe src="${currentQuestion.mediaUrl}" frameborder="0" allowfullscreen></iframe>
+        </div>
+    `;
+    } else {
+    // IMAGES get the id="quiz-media"
+    mediaHtml = `<img id="quiz-media" src="${currentQuestion.mediaUrl}" alt="Quiz media" class="${customClass}">`;
+    }
     
       // Disable buttons if at the start or end of the quiz
       const isFirstQuestion = currentQuestionIndex === 0;
