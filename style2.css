@@ -9,9 +9,10 @@
     cursor: pointer;
 }
 
-/* .dark-mode-moon-icon:hover{
-
-} */
+.dark-mode-moon-icon:hover{
+    color:#98A1BC;
+    transition: 0.5s;
+}
 
 h1{
     text-align: center;
@@ -62,10 +63,13 @@ p{
 
 .buttons-section{
     margin: auto;
-    width: 80%;
+    width: 78%;
     text-align: center;
     padding-top: 50px;
-    /* background-color: green; */
+
+    display: flex;
+    justify-content: center;
+    gap: 30px;
 }
 
 .buttons{
@@ -75,6 +79,10 @@ p{
     border-radius: 10px;
     height: 50px;
     width: 150px;
+}
 
+.buttons:hover{
+    background-color:#98A1BC;
+    transition: 0.5s;
 }
 

@@ -12,10 +12,9 @@
 
   <div class="main-container">
     <div class="header-section">
-      <!-- <h1>🛡️ Verity Guardian</h1> -->
       <a class="dark-mode-moon-icon" href="#" target="blank"><i class="fas fa-moon"></i></a>
     </div>
-    <h1>🛡️ Verity Guardian</h1>
+    <h1>&#10210 Nexus &#10211</h1>
     <div class="introduction-section">
       <!-- <p class="lead">Empowering you against deepfakes through education and protection.</p> -->
       <h2> Our Vision and Goal</h2>
@@ -28,11 +27,16 @@
     </div>
 
     <div id="menu" class="buttons-section">
-      <button class="buttons" id="identifying-fakes-button" onclick="showModule('learnModule')">Identifying Fakes</button>
-      <button class="buttons" id="alibi-generator-button" onclick="showModule('protectModule')">Alibi Generator</button>
+      <a href="quiz.html">
+        <button class="buttons" id="identifying-fakes-button" onclick="showModule('learnModule')">Identifying Fakes</button>
+      </a>
+
+      <a href="alibi.html">
+        <button class="buttons" id="alibi-generator-button" onclick="showModule('protectModule')">Alibi Generator</button>
+      </a>
     </div>
 
-    <div id="learnModule" class="module-container" style="display: none;">
+    <!-- <div id="learnModule" class="module-container" style="display: none;">
       <div class="card p-4">
         <button class="btn-close" onclick="showModule('menu')"></button>
         <h2 class="text-center mb-4">Deepfake Detective Quiz</h2>
@@ -40,9 +44,9 @@
           </div>
         <div id="quiz-feedback" class="mt-3 text-center fs-4"></div>
       </div>
-    </div>
+    </div> -->
 
-    <div id="protectModule" class="module-container" style="display: none;">
+    <!-- <div id="protectModule" class="module-container" style="display: none;">
       <div class="card p-4">
         <button class="btn-close" onclick="showModule('menu')"></button>
         <h2 class="text-center mb-4">AI Alibi Generator</h2>
@@ -56,7 +60,7 @@
             </ul>
         </div>
       </div>
-    </div>
+    </div> -->
 
   </div>
 
