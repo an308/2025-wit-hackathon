@@ -9,9 +9,10 @@
     cursor: pointer;
 }
 
-/* .dark-mode-moon-icon:hover{
-
-} */
+.dark-mode-moon-icon:hover{
+    color:#98A1BC;
+    transition: 0.5s;
+}
 
 h1{
     text-align: center;
@@ -62,10 +63,13 @@ p{
 
 .buttons-section{
     margin: auto;
-    width: 80%;
+    width: 78%;
     text-align: center;
     padding-top: 50px;
-    /* background-color: green; */
+
+    display: flex;
+    justify-content: center;
+    gap: 30px;
 }
 
 .buttons{
@@ -75,6 +79,90 @@ p{
     border-radius: 10px;
     height: 50px;
     width: 150px;
-
 }
 
+.buttons:hover{
+    background-color:#98A1BC;
+    transition: 0.5s;
+}
+
+/* Style for each alibi entry card */
+.alibi-entry {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  background-color: #f9f9f9;
+}
+
+/* User photo on the left */
+.alibi-photo {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%; /* Makes the image a circle */
+  object-fit: cover; /* Prevents the image from stretching */
+  /* margin-right: 15px; */
+}
+
+/* The main content area with date/location/hash */
+.alibi-details {
+  margin-left: 15px; /* This makes it take up the available space */
+}
+
+.alibi-details p {
+  margin: 0;
+  line-height: 1.4;
+}
+
+.proof-hash {
+  font-family: monospace;
+  font-size: 1rem;
+  color: #6c757d; /* A muted gray color */
+}
+
+/* The verification status on the right */
+.alibi-status {
+  text-align: center;
+}
+
+.status-icon {
+  font-size: 2.5rem; /* Makes the tick/cross bigger */
+}
+
+.status-icon.verified {
+  color: #198754; /* Green for success */
+}
+
+.status-icon.unverified {
+  color: #dc3545; /* Red for failure */
+}
+
+.reason-text {
+  font-size: 1rem;
+  color: #6c757d;
+  margin-top: 5px;
+}
+
+/* New container to hold the hash and the button */
+.proof-hash-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Style for the copy button */
+.copy-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    color: #555879; /* A blue color for the button */
+    transition: color 0.2s;
+}
+
+.copy-button:hover {
+    color: #555879; /* A darker blue on hover */
+}
