@@ -198,7 +198,7 @@ async function verifyAlibi(alibi) {
     if (alibi.proofHash === null) {
         return {
             isVerified: false,
-            reason: "Image is Fake"
+            reason: "Origin Unverified"
         };
     }
 
@@ -289,7 +289,7 @@ async function loadAlibiLog() {
                 </div>
             `;
         } else {
-            detailsContent = `<p class="text-danger">Authentication Failed: No Metadata</p>`;
+            detailsContent = `<p class="text-danger">Authentication Failed: No Metadata Found</p>`;
         }
 
         listItem.innerHTML = `

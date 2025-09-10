@@ -95,8 +95,8 @@ p{
 /* Main log container */
 #alibi-log {
   background-color: rgba(244, 235, 211, 0.5); /* matches the introduction-section */
-  width: 100%; /* Will take up full width of its parent */
-  margin: 20px auto; /* Adds space above/below the log */
+  width: 95%; /* Will take up full width of its parent */
+  margin: -10px auto; /* Adds space above/below the log */
   border-radius: 15px;
   padding: 20px;
   list-style: none; /* Removes the default bullet points */
@@ -155,8 +155,8 @@ p{
     align-items: center; /* Aligns items vertically */
     gap: 15px; /* Adds a nice space between the input and the button */
     margin-top: 20px; /* Adds some space above */
-    width: 96%;
-    margin-left: 21px;
+    width: 92%;
+    margin-left: 50px;
 }
   
 .auth-controls input[type="file"] {
