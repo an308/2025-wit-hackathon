@@ -149,6 +149,25 @@ p{
   text-align: center;
 }
 
+.auth-controls {
+    display: flex; /* Aligns items in a row */
+    justify-content: center; /* Centers the items horizontally */
+    align-items: center; /* Aligns items vertically */
+    gap: 15px; /* Adds a nice space between the input and the button */
+    margin-top: 20px; /* Adds some space above */
+    width: 96%;
+    margin-left: 21px;
+}
+  
+.auth-controls input[type="file"] {
+    max-width: 90%;
+}
+
+#alibi-button{
+    width: 190px;
+    height: 40px;
+}
+
 .status-icon {
   font-size: 2.5rem; /* Makes the tick/cross bigger */
 }
