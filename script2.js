@@ -212,7 +212,7 @@ async function verifyAlibi(alibi) {
 
     const isVerified = (rehashedProofHash === alibi.proofHash);
 
-    let reason = isVerified ? "Image is Valid" : "Data Tampered";
+    let reason = isVerified ? "Origin is Verified" : "Data Tampered";
 
     return {
         isVerified: isVerified,
