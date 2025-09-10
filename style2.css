@@ -52,7 +52,7 @@ p{
 
 .introduction-section{
     padding-top: 40px;
-    padding-bottom: 20px;
+    padding-bottom: 40px;
     /* padding-left: 10px; */
     background-color: rgba(244, 235, 211, 50%);
     width: 78%;
@@ -66,7 +66,7 @@ p{
     
     width: 78%;
     text-align: center;
-    padding-top: 50px;
+    padding-top: 25px;
     display: flex;
     justify-content: center;
     gap: 30px;
